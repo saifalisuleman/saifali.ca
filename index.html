@@ -40,12 +40,13 @@
     font-family: 'DM Sans', sans-serif;
     font-weight: 400;
     line-height: 1.6;
+    font-size: clamp(10px, 1.2vw, 30px);
   }
   .page {
     display: grid;
     grid-template-rows: auto 1fr auto;
-    height: 100vh;
-    width: 100vw;
+    min-height: 100vh;
+    width: 100%;
   }
   nav {
     display: flex;
@@ -76,7 +77,6 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     height: 100%;
-    overflow: hidden;
   }
   .left {
     display: flex;
@@ -96,7 +96,7 @@
   }
   h1 {
     font-family: 'DM Serif Display', serif;
-    font-size: clamp(2.4rem, 4.5vw, 4rem);
+    font-size: clamp(2rem, 4.5vw, 3rem);
     line-height: 1.05;
     letter-spacing: -0.02em;
     margin-bottom: 1.2rem;
@@ -107,7 +107,7 @@
   .sub {
     font-size: 0.95rem;
     color: var(--muted);
-    max-width: 400px;
+    max-width: 100%;
     line-height: 1.8;
     margin-bottom: 2rem;
     opacity: 0;
@@ -129,7 +129,7 @@
     font-size: 0.88rem;
     color: var(--muted);
     line-height: 1.8;
-    max-width: 420px;
+    max-width: 100%;
   }
   .right {
     display: flex;
@@ -179,17 +179,17 @@
   }
   .contact-item:hover { color: var(--accent); }
   .contact-icon {
-    width: 26px; height: 26px;
+    width: clamp(1.5rem, 4.5vw, 2.2rem); height: clamp(1.5rem, 4.5vw, 2.2rem);
     background: var(--bg);
     border: 1px solid var(--border);
     border-radius: 4px;
     display: flex; align-items: center; justify-content: center;
     flex-shrink: 0;
   }
-  .contact-icon svg { width: 12px; height: 12px; fill: var(--accent); }
+  .contact-icon svg { width: clamp(1.2rem, 4vw, 1.4rem); height: clamp(1.2rem, 4vw, 1.4rem); fill: var(--accent); }
   .contact-meta { display: flex; flex-direction: column; gap: 1px; }
   .contact-lbl { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
-  .contact-val { font-size: 0.83rem; color: var(--ink); }
+  .contact-val { font-size: 0.85rem; color: var(--ink); }
   footer {
     padding: 0.9rem 3rem;
     border-top: 1px solid var(--border);
@@ -204,7 +204,6 @@
     to   { opacity: 1; transform: translateY(0); }
   }
   @media (max-width: 700px) {
-    .page { height: auto; }
     .main { grid-template-columns: 1fr; }
     .left { border-right: none; border-bottom: 1px solid var(--border); padding: 2.5rem 1.5rem; }
     .right { padding: 2rem 1.5rem; }
@@ -223,7 +222,7 @@
   <div class="main">
     <div class="left">
       <p class="eyebrow">Technology &amp; Digital Solutions</p>
-      <h1>You'll be in<br><em>Saif</em>&nbsp; hands.</h1>
+      <h1>You'll be in <em>Saif</em>&nbsp; hands.</h1>
       <p class="sub">Hi, I'm Saifali Suleman — someone who genuinely loves technology and finding smart, reliable ways to make it work for people.</p>
       <div class="about-block">
         <h2>Problem solver. Tech enthusiast.</h2>

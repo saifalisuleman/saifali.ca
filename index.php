@@ -1,0 +1,303 @@
+<?php
+$config = [
+    'name'     => 'Saifali Suleman',
+    'email'    => 'email@saifali.ca',
+    'linkedin' => 'https://linkedin.com/in/saifalisuleman',
+    'year'     => date('Y'),
+];
+
+$tags = [
+    'Information Technology',
+    'Audio Visual (AV)',
+    'Systems & Networking',
+    'Software Development',
+    'Tech Support',
+    'Problem Solving',
+    'Digital Infrastructure',
+];
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title><?= htmlspecialchars($config['name']) ?> — Technology & Digital Solutions</title>
+<meta name="description" content="Hi, I'm Saifali Suleman — someone who genuinely loves technology and finding smart, reliable ways to make it work for people. Specialising in IT, AV, systems, networking, and more."/>
+<meta name="keywords" content="Saifali Suleman, IT, Information Technology, Audio Visual, AV, Systems, Networking, Software Development, Tech Support, Digital Infrastructure"/>
+<meta name="author" content="<?= htmlspecialchars($config['name']) ?>"/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://saifali.ca/"/>
+
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://saifali.ca/"/>
+<meta property="og:title" content="<?= htmlspecialchars($config['name']) ?> — Technology & Digital Solutions"/>
+<meta property="og:description" content="Hi, I'm Saifali Suleman — someone who genuinely loves technology and finding smart, reliable ways to make it work for people."/>
+<meta property="og:site_name" content="<?= htmlspecialchars($config['name']) ?>"/>
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="<?= htmlspecialchars($config['name']) ?> — Technology & Digital Solutions"/>
+<meta name="twitter:description" content="Hi, I'm Saifali Suleman — someone who genuinely loves technology and finding smart, reliable ways to make it work for people."/>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #f7f5f0;
+    --ink: #1a1917;
+    --muted: #6b6860;
+    --accent: #2d5a4f;
+    --border: #dedad3;
+    --card: #ffffff;
+  }
+  html, body {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+  }
+  .page {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    height: 100vh;
+    width: 100vw;
+  }
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.1rem 3rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg);
+  }
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.05rem;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .nav-cta {
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 1px;
+    transition: opacity 0.2s;
+  }
+  .nav-cta:hover { opacity: 0.55; }
+  .main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 100%;
+    overflow: hidden;
+  }
+  .left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 3rem 3.5rem 3rem 3rem;
+    border-right: 1px solid var(--border);
+  }
+  .eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.2rem;
+    opacity: 0;
+    animation: fadeUp 0.5s ease forwards 0.1s;
+  }
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.4rem, 4.5vw, 4rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.2rem;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards 0.2s;
+  }
+  h1 em { font-style: italic; color: var(--accent); }
+  .sub {
+    font-size: 0.95rem;
+    color: var(--muted);
+    max-width: 400px;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards 0.3s;
+  }
+  .about-block {
+    border-top: 1px solid var(--border);
+    padding-top: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards 0.4s;
+  }
+  .about-block h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+    margin-bottom: 0.6rem;
+    color: var(--ink);
+  }
+  .about-block p {
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.8;
+    max-width: 420px;
+  }
+  .right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 3rem 3rem 3rem 3.5rem;
+    gap: 1.5rem;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.4rem 1.6rem;
+  }
+  .card-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1rem;
+  }
+  .tag-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .tag {
+    font-size: 0.75rem;
+    padding: 0.28rem 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    color: var(--muted);
+    background: var(--bg);
+  }
+  .contact-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    text-decoration: none;
+    color: var(--ink);
+    transition: color 0.2s;
+  }
+  .contact-item:hover { color: var(--accent); }
+  .contact-icon {
+    width: 26px; height: 26px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .contact-icon svg { width: 12px; height: 12px; fill: var(--accent); }
+  .contact-meta { display: flex; flex-direction: column; gap: 1px; }
+  .contact-lbl { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+  .contact-val { font-size: 0.83rem; color: var(--ink); }
+  footer {
+    padding: 0.9rem 3rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--bg);
+  }
+  footer span { font-size: 0.72rem; color: var(--border); letter-spacing: 0.05em; }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @media (max-width: 700px) {
+    html, body { overflow: auto; }
+    .page { height: auto; }
+    .main { grid-template-columns: 1fr; }
+    .left { border-right: none; border-bottom: 1px solid var(--border); padding: 2.5rem 1.5rem; }
+    .right { padding: 2rem 1.5rem; }
+    nav, footer { padding-left: 1.5rem; padding-right: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <nav>
+    <a href="#" class="nav-logo"><?= htmlspecialchars($config['name']) ?></a>
+    <a href="mailto:<?= htmlspecialchars($config['email']) ?>" class="nav-cta">Get in touch</a>
+  </nav>
+
+  <div class="main">
+    <div class="left">
+      <p class="eyebrow">Technology &amp; Digital Solutions</p>
+      <h1>You'll be in <em>Saif</em>&nbsp; hands.</h1>
+      <p class="sub">Hi, I'm <?= htmlspecialchars($config['name']) ?> — someone who genuinely loves technology and finding smart, reliable ways to make it work for people.</p>
+      <div class="about-block">
+        <h2>Problem solver. Tech enthusiast.</h2>
+        <p>I have a genuine curiosity for how technology works and how to make it work better. From software and systems to AV and networks — IT is where I feel at home. Methodical, calm under pressure, and always reliable.</p>
+      </div>
+    </div>
+
+    <div class="right">
+      <div class="card">
+        <p class="card-label">Areas of interest</p>
+        <div class="tag-wrap">
+          <?php foreach ($tags as $tag): ?>
+            <span class="tag"><?= htmlspecialchars($tag) ?></span>
+          <?php endforeach; ?>
+        </div>
+      </div>
+
+      <div class="card">
+        <p class="card-label">Contact</p>
+        <div class="contact-row">
+
+          <a href="mailto:<?= htmlspecialchars($config['email']) ?>" class="contact-item">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 4H4C2.9 4 2 4.9 2 6v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+              </svg>
+            </div>
+            <div class="contact-meta">
+              <span class="contact-lbl">Email</span>
+              <span class="contact-val"><?= htmlspecialchars($config['email']) ?></span>
+            </div>
+          </a>
+
+          <a href="<?= htmlspecialchars($config['linkedin']) ?>" target="_blank" rel="noopener noreferrer" class="contact-item">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              </svg>
+            </div>
+            <div class="contact-meta">
+              <span class="contact-lbl">LinkedIn</span>
+              <span class="contact-val"><?= htmlspecialchars($config['linkedin']) ?></span>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <span>&copy; <?= $config['year'] ?> <?= htmlspecialchars($config['name']) ?></span>
+    <span>All rights reserved</span>
+  </footer>
+
+</div>
+</body>
+</html>

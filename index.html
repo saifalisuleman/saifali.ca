@@ -23,6 +23,7 @@
 <link href="styles.css" rel="stylesheet"/>
 </head>
 <body>
+<canvas id="bg-canvas"></canvas>
 <div class="page">
   <nav>
     <a href="https://saifali.ca/" class="nav-logo"><strong>Saifali Suleman</strong></a>
@@ -66,6 +67,7 @@
               <span class="contact-lbl">Email</span>
               <span class="contact-val">hi@saifali.ca</span>
             </div>
+            <svg class="contact-arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
           </a>
           <a href="https://linkedin.com/in/saifalisuleman" target="_blank" rel="noopener noreferrer" class="contact-item">
             <div class="contact-icon">
@@ -75,15 +77,18 @@
             </div>
             <div class="contact-meta">
               <span class="contact-lbl">LinkedIn</span>
-              <span class="contact-val">linkedin.com/in/saifalisuleman</span>
+              <span class="contact-val">saifalisuleman</span>
             </div>
+            <svg class="contact-arrow" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
           </a>
         </div>
       </div>
     </div>
   </div>
   <footer>
-    <span>&copy; 2025 <a href="https://saifali.ca/" class="footer-link">Saifali Suleman</a></span>
+    <span>
+      &copy; <a href="https://saifali.ca/" class="footer-link">Saifali Suleman</a> 
+    </span>
     <span>
       <a href="#about" class="footer-link">About</a> &middot;
       <a href="#contact" class="footer-link">Contact</a>
@@ -91,5 +96,91 @@
   </footer>
 
 </div>
+<script>
+(function () {
+  const canvas = document.getElementById('bg-canvas');
+  const ctx = canvas.getContext('2d');
+  let W, H, pts;
+  const mouse = { x: -9999, y: -9999 };
+  const R = '45,90,79';
+
+  function init() {
+    W = canvas.width = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+    const n = Math.min(Math.floor(W * H / 16000), 85);
+    pts = Array.from({ length: n }, () => ({
+      x: Math.random() * W,
+      y: Math.random() * H,
+      vx: (Math.random() - 0.5) * 0.38,
+      vy: (Math.random() - 0.5) * 0.38,
+      r: Math.random() * 1.2 + 0.5
+    }));
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+
+    for (const p of pts) {
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0 || p.x > W) p.vx *= -1;
+      if (p.y < 0 || p.y > H) p.vy *= -1;
+    }
+
+    ctx.strokeStyle = `rgb(${R})`;
+    for (let i = 0; i < pts.length; i++) {
+      for (let j = i + 1; j < pts.length; j++) {
+        const d = Math.hypot(pts[i].x - pts[j].x, pts[i].y - pts[j].y);
+        if (d < 130) {
+          ctx.globalAlpha = (1 - d / 130) * 0.13;
+          ctx.lineWidth = 0.6;
+          ctx.beginPath();
+          ctx.moveTo(pts[i].x, pts[i].y);
+          ctx.lineTo(pts[j].x, pts[j].y);
+          ctx.stroke();
+        }
+      }
+      const md = Math.hypot(pts[i].x - mouse.x, pts[i].y - mouse.y);
+      if (md < 190) {
+        ctx.globalAlpha = (1 - md / 190) * 0.55;
+        ctx.lineWidth = 0.9;
+        ctx.beginPath();
+        ctx.moveTo(pts[i].x, pts[i].y);
+        ctx.lineTo(mouse.x, mouse.y);
+        ctx.stroke();
+      }
+    }
+
+    ctx.fillStyle = `rgb(${R})`;
+    for (const p of pts) {
+      ctx.globalAlpha = 0.28;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    if (mouse.x > 0 && mouse.x < W) {
+      ctx.globalAlpha = 0.5;
+      ctx.beginPath();
+      ctx.arc(mouse.x, mouse.y, 2.8, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    ctx.globalAlpha = 1;
+    requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize', init);
+  window.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
+  window.addEventListener('mouseleave', () => { mouse.x = -9999; mouse.y = -9999; });
+  window.addEventListener('touchmove', e => {
+    mouse.x = e.touches[0].clientX;
+    mouse.y = e.touches[0].clientY;
+  }, { passive: true });
+  window.addEventListener('touchend', () => { mouse.x = -9999; mouse.y = -9999; });
+
+  init();
+  draw();
+})();
+</script>
 </body>
 </html>

@@ -23,7 +23,6 @@
 <link href="styles.css" rel="stylesheet"/>
 </head>
 <body>
-<canvas id="bg-canvas"></canvas>
 <div class="page">
   <nav>
     <a href="https://saifali.ca/" class="nav-logo"><strong>Saifali Suleman</strong></a>
@@ -45,13 +44,34 @@
       <div class="card" id="interests">
         <p class="card-label">Areas of interest</p>
         <div class="tag-wrap">
-          <span class="tag">Artificial Intelligence (AI)</span>
-          <span class="tag">Information Technology</span>
-          <span class="tag">Digital Infrastructure</span>
-          <span class="tag">Audio Visual (AV)</span>
-          <span class="tag">Software &amp; App Development</span>
-          <span class="tag">Networking</span>
-          <span class="tag">Tech Support</span>
+         <div class="tag-item">
+            <span class="tag">Artificial Intelligence (AI)</span>
+            <div class="tag-desc">Applying AI to streamline workflows, improve decision-making, and solve practical, real-world problems.</div>
+          </div>
+          <div class="tag-item">
+            <span class="tag">Information Technology</span>
+            <div class="tag-desc">Supporting and managing IT environments, from system setup and deployment to reliable day-to-day operations.</div>
+          </div>
+          <div class="tag-item">
+            <span class="tag">Digital Infrastructure</span>
+            <div class="tag-desc">Designing and maintaining scalable systems, including servers, cloud platforms, and connected technologies.</div>
+          </div>
+          <div class="tag-item">
+            <span class="tag">Audio Visual (AV)</span>
+            <div class="tag-desc">Delivering integrated AV solutions for collaboration spaces, council chambers, and seamless communication experiences.</div>
+          </div>
+          <div class="tag-item">
+            <span class="tag">Software &amp; App Development</span>
+            <div class="tag-desc">Developing intuitive applications and tools that align with user needs and business workflows.</div>
+          </div>
+          <div class="tag-item">
+            <span class="tag">Networking</span>
+            <div class="tag-desc">Building and maintaining secure, high-performance networks that ensure reliable connectivity.</div>
+          </div>
+          <div class="tag-item">
+            <span class="tag">Tech Support</span>
+            <div class="tag-desc">Providing clear, efficient support to resolve issues quickly and keep users productive.</div>
+          </div>
         </div>
       </div>
       <div class="card">
@@ -97,90 +117,23 @@
 
 </div>
 <script>
-(function () {
-  const canvas = document.getElementById('bg-canvas');
-  const ctx = canvas.getContext('2d');
-  let W, H, pts;
-  const mouse = { x: -9999, y: -9999 };
-  const R = '45,90,79';
-
-  function init() {
-    W = canvas.width = window.innerWidth;
-    H = canvas.height = window.innerHeight;
-    const n = Math.min(Math.floor(W * H / 16000), 85);
-    pts = Array.from({ length: n }, () => ({
-      x: Math.random() * W,
-      y: Math.random() * H,
-      vx: (Math.random() - 0.5) * 0.38,
-      vy: (Math.random() - 0.5) * 0.38,
-      r: Math.random() * 1.2 + 0.5
-    }));
-  }
-
-  function draw() {
-    ctx.clearRect(0, 0, W, H);
-
-    for (const p of pts) {
-      p.x += p.vx; p.y += p.vy;
-      if (p.x < 0 || p.x > W) p.vx *= -1;
-      if (p.y < 0 || p.y > H) p.vy *= -1;
+document.querySelectorAll('.tag-item').forEach(function(item){
+  item.querySelector('.tag').addEventListener('click',function(e){
+    e.stopPropagation();
+    var wrap=item.closest('.tag-wrap');
+    var wasOpen=item.classList.contains('open');
+    document.querySelectorAll('.tag-item.open').forEach(function(el){el.classList.remove('open');});
+    document.querySelectorAll('.tag-wrap.expanded').forEach(function(el){el.classList.remove('expanded');});
+    if(!wasOpen){
+      item.classList.add('open');
+      if(window.innerWidth>700) wrap.classList.add('expanded');
     }
-
-    ctx.strokeStyle = `rgb(${R})`;
-    for (let i = 0; i < pts.length; i++) {
-      for (let j = i + 1; j < pts.length; j++) {
-        const d = Math.hypot(pts[i].x - pts[j].x, pts[i].y - pts[j].y);
-        if (d < 130) {
-          ctx.globalAlpha = (1 - d / 130) * 0.13;
-          ctx.lineWidth = 0.6;
-          ctx.beginPath();
-          ctx.moveTo(pts[i].x, pts[i].y);
-          ctx.lineTo(pts[j].x, pts[j].y);
-          ctx.stroke();
-        }
-      }
-      const md = Math.hypot(pts[i].x - mouse.x, pts[i].y - mouse.y);
-      if (md < 190) {
-        ctx.globalAlpha = (1 - md / 190) * 0.55;
-        ctx.lineWidth = 0.9;
-        ctx.beginPath();
-        ctx.moveTo(pts[i].x, pts[i].y);
-        ctx.lineTo(mouse.x, mouse.y);
-        ctx.stroke();
-      }
-    }
-
-    ctx.fillStyle = `rgb(${R})`;
-    for (const p of pts) {
-      ctx.globalAlpha = 0.28;
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fill();
-    }
-
-    if (mouse.x > 0 && mouse.x < W) {
-      ctx.globalAlpha = 0.5;
-      ctx.beginPath();
-      ctx.arc(mouse.x, mouse.y, 2.8, 0, Math.PI * 2);
-      ctx.fill();
-    }
-
-    ctx.globalAlpha = 1;
-    requestAnimationFrame(draw);
-  }
-
-  window.addEventListener('resize', init);
-  window.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
-  window.addEventListener('mouseleave', () => { mouse.x = -9999; mouse.y = -9999; });
-  window.addEventListener('touchmove', e => {
-    mouse.x = e.touches[0].clientX;
-    mouse.y = e.touches[0].clientY;
-  }, { passive: true });
-  window.addEventListener('touchend', () => { mouse.x = -9999; mouse.y = -9999; });
-
-  init();
-  draw();
-})();
+  });
+});
+document.addEventListener('click',function(){
+  document.querySelectorAll('.tag-item.open').forEach(function(el){el.classList.remove('open');});
+  document.querySelectorAll('.tag-wrap.expanded').forEach(function(el){el.classList.remove('expanded');});
+});
 </script>
 </body>
 </html>

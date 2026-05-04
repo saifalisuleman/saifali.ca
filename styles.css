@@ -362,7 +362,7 @@ h2 {
 
 .about-grid {
   display: grid;
-  grid-template-columns: 1fr 300px;
+  grid-template-columns: 1fr 310px;
   gap: 5rem;
   align-items: end;  /* anchor both columns to the bottom */
 }
@@ -450,7 +450,7 @@ h2 {
   position: absolute;
   bottom: 0; left: 0; right: 0;
   padding: 1rem 1.25rem 1.2rem;
-  background: rgba(30, 63, 55, 0.5);
+  background: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(2px) saturate(160%);
   -webkit-backdrop-filter: blur(2px) saturate(160%);
   border-left: 1px solid rgba(255, 255, 255, 0.5);
@@ -468,6 +468,8 @@ h2 {
   font-family: var(--font-display);
   font-weight: 400;
   font-size: 1.05rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
   color: #ffffff;
   text-shadow: 0 1px 4px rgba(0,0,0,0.25);
   margin-bottom: .15rem;

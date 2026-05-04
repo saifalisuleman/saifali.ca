@@ -362,7 +362,7 @@ h2 {
 
 .about-grid {
   display: grid;
-  grid-template-columns: 1fr 340px;
+  grid-template-columns: 1fr 300px;
   gap: 5rem;
   align-items: end;  /* anchor both columns to the bottom */
 }
@@ -843,7 +843,7 @@ h2 {
 
   /* Disable pop-out on stacked layouts — photo stays within the frame */
   .photo-frame {
-    max-width: 380px;
+    max-width: 340px;
     width: 100%;
     border-radius: 12px;
     aspect-ratio: 3 / 4.4;

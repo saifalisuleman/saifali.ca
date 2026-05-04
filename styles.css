@@ -845,7 +845,7 @@ h2 {
   .photo-frame {
     max-width: 340px;
     width: 100%;
-    aspect-ratio: 3 / 4.4;
+    aspect-ratio: 3 / 4.5;
   }
 
   .portrait-photo {
@@ -906,8 +906,7 @@ h2 {
   }
 
   .photo-frame {
-    max-width: 400px;
+    max-width: 380px;
     width: 100%;
-    aspect-ratio: 3 / 5;
   }
 }
